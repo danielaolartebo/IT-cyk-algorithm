@@ -1,5 +1,7 @@
 package ui;
 
+import model.CFG;
+
 /**
  *
  * @author Daniela Olarte Borja A00368359
@@ -8,4 +10,8 @@ package ui;
  */
 
 public class Productions {
+    CFG cfg;
+
+    public Productions(CFG cfg) {
+    }
 }
