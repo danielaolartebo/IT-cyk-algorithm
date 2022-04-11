@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="385.0" prefWidth="564.0" style="-fx-background-color: #BD2000;" xmlns="http://javafx.com/javafx/8.0.202" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="364.0" prefWidth="545.0" style="-fx-background-color: #ff7f3f;">
+         <children>
+            <Label contentDisplay="CENTER" layoutX="179.0" layoutY="21.0" prefHeight="28.0" prefWidth="188.0" text="Create Production" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Baskerville Old Face" size="23.0" />
+               </font>
+            </Label>
+            <Button layoutX="228.0" layoutY="325.0" mnemonicParsing="false" onAction="#nextPage" prefHeight="25.0" prefWidth="90.0" text="Continue">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <ScrollPane fitToWidth="true" layoutX="110.0" layoutY="107.0" prefHeight="200.0" prefWidth="326.0" style="-fx-background-color: #ff533a;">
+               <content>
+                  <GridPane fx:id="gridPane" alignment="CENTER" hgap="5.0" prefHeight="20.0" prefWidth="318.0" vgap="5.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="154.0" minWidth="10.0" prefWidth="70.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="154.0" minWidth="10.0" prefWidth="40.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="273.0" minWidth="10.0" prefWidth="208.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="ALWAYS" />
+                     </rowConstraints>
+                     <children>
+                        <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" text="Variable" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" text="Productions" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </GridPane>
+               </content>
+            </ScrollPane>
+            <HBox alignment="CENTER" layoutX="48.0" layoutY="55.0" prefHeight="40.0" prefWidth="450.0" spacing="5.0">
+               <children>
+                  <Label text="Note: Use " />
+                  <TextField alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="45.0" text="|" />
+                  <Label text="separator and " />
+                  <TextField alignment="CENTER" editable="false" prefHeight="30.0" prefWidth="45.0" text="λ" />
+                  <Label text="symbol if needed" />
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
