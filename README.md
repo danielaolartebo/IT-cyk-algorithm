@@ -35,6 +35,19 @@
 
 🔸*Insert a string to be tested and see if it is achieved by the grammar. If it is achieved, you will be notified by an alert as well as if it is not achived.*
 
+## ***Proving examples***📍
+**Creation screen**
+➖*Variable: SAB*
+➖*Symbols: ab*
+➖*Initial state: S*
+
+**Production screen**
+➖*Variable: S  ➡️  AB*
+➖*Variable: A  ➡️  AA|a*
+➖*Variable: B  ➡️  b*
+
+**Testing screen**
+➖*String: aab*
 
 ## ***Sources***📎
 
