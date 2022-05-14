@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXTextArea?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
@@ -7,11 +8,11 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="385.0" prefWidth="564.0" style="-fx-background-color: #BD2000;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="705.0" prefWidth="564.0" style="-fx-background-color: #BD2000;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="364.0" prefWidth="545.0" style="-fx-background-color: #ff7f3f;">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="688.0" prefWidth="545.0" style="-fx-background-color: #ff7f3f;">
          <children>
-            <Button layoutX="228.0" layoutY="325.0" mnemonicParsing="false" onAction="#onCreateGrammar" prefHeight="25.0" prefWidth="90.0" text="Continue">
+            <Button layoutX="228.0" layoutY="651.0" mnemonicParsing="false" onAction="#onCreateGrammar" prefHeight="25.0" prefWidth="90.0" text="Continue">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -21,9 +22,12 @@
                   <Font name="System Bold" size="25.0" />
                </font>
             </Label>
-            <TextArea fx:id="txtGrammar" layoutX="66.0" layoutY="82.0" prefHeight="200.0" prefWidth="414.0" promptText="Grammar" />
-            <Label layoutX="172.0" layoutY="50.0" text="Please write the grammar here" />
-            <Label layoutX="178.0" layoutY="291.0" text="The grammar must be a FNC" />
+            <TextArea fx:id="txtGrammar" layoutX="66.0" layoutY="395.0" prefHeight="200.0" prefWidth="414.0" promptText="Grammar" />
+            <Label layoutX="172.0" layoutY="362.0" text="Please write the grammar here" />
+            <Label layoutX="178.0" layoutY="614.0" text="The grammar must be a FNC" />
+            <JFXTextArea fx:id="txtA" editable="false" layoutX="66.0" layoutY="62.0" prefHeight="98.0" prefWidth="425.0" text="Conditions of grammar:&#10;There must be no useless variables&#10;There must be no lambda productions (except S -&gt; *)&#10;Must be written in Binary form" />
+            <JFXTextArea editable="false" layoutX="66.0" layoutY="162.0" prefHeight="106.0" prefWidth="423.0" text="Configurations&#10;The lambda is represented by *&#10;To indicate a production use -&gt;&#10;To separate several productions (Union) use |" />
+            <JFXTextArea layoutX="66.0" layoutY="271.0" prefHeight="74.0" prefWidth="424.0" text="Note: The system is able to validate if the grammar is well written, it is assumed that the user will not enter useless variables or lambda productions. " />
          </children>
       </AnchorPane>
    </center>

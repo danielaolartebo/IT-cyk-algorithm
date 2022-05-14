@@ -2,12 +2,8 @@ package ui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
 import model.CFG;
 
 import java.io.IOException;
@@ -42,9 +38,15 @@ public class FXControllerCFG {
     public void onCreateGrammar(ActionEvent event) {
         sendGrammar();
         if(!cfg.getChomskey()){
-            System.out.println("No es una forma normal de Chomskey");
+            cfg.resetGrammar();
             cfg = new CFG();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("Error");
+            alert.setContentText("Error no ingresaste una gramatica en FNC");
+            alert.showAndWait();
         }
+        cfg.test();
     }
 
     public void sendGrammar(){
