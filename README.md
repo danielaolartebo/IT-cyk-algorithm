@@ -35,7 +35,7 @@
 
 🔸*Insert a string to be tested and see if it is achieved by the grammar. If it is achieved, you will be notified by an alert as well as if it is not achived.*
 
-## ***Proving examples***📍
+## ***Testing examples***📍
 **Creation screen**
 ➖*FNC grammar:* 
 ```bash
