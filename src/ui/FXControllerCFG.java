@@ -8,7 +8,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.CFG;
-import model.Transition;
 import java.io.IOException;
 import java.util.Arrays;
 
@@ -52,7 +51,6 @@ public class FXControllerCFG {
     //********************************************** GUI METHODS ***************************************************************+
 
     /** Checks if string a w belong to the grammar
-     * @param event
      */
 
     @FXML
@@ -60,18 +58,11 @@ public class FXControllerCFG {
         String string = stringTextField.getText();
         if (check(string)) {
             if (cfg.cykAlgorithm(string)) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Alerta");
-                alert.setHeaderText("Información");
-                alert.setContentText("La cadena pertenece a la gramatica");
-                alert.showAndWait();
+                alert("La cadena pertenece a la gramatica", true);
+                System.out.println("Xd");
             }
-        }else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Alerta");
-            alert.setHeaderText("Formato incorrecto");
-            alert.setContentText("Formato incorrecto. Volver a introduccir la cadena");
-            alert.showAndWait();
+        }  else {
+            alert("Formato incorrecto. Volver a introducir la cadena", false);
         }
     }
 
@@ -80,7 +71,8 @@ public class FXControllerCFG {
      * @return true if the string matches the grammar symbols and is not empty
      */
     private boolean check(String string) {
-        String symbols = Arrays.toString(cfg.getSymbols());
+        String symbols = Arrays.toString(cfg.getSymbols().toArray());
+        System.out.println(symbols);
         return string.matches("[" + symbols + "]+") && !string.isEmpty();
     }
 
@@ -95,14 +87,14 @@ public class FXControllerCFG {
             sendGrammar();
             if(!cfg.getChomskey()){
                 cfg.resetGrammar();
-                alertError("No ingresaste una Gramatica FNC");
+                alert("No ingresaste una Gramatica FNC", false);
                 cfg = new CFG();
             } else {
                 cfg.test();
                 nextScreen();
             }
         } else {
-            alertError("Gramatica vacía");
+            alert("Gramatica vacía", false);
         }
     }
 
@@ -120,10 +112,15 @@ public class FXControllerCFG {
      * @param msg given to the user
      */
 
-    public void alertError(String msg){
-        Alert alert = new Alert(Alert.AlertType.ERROR);
+    public void alert(String msg, boolean type){
+        Alert alert;
+        if (type) {
+            alert = new Alert(Alert.AlertType.INFORMATION);
+        } else {
+            alert = new Alert(Alert.AlertType.ERROR);
+        }
         alert.setHeaderText(null);
-        alert.setTitle("Error");
+        alert.setTitle("Alerta");
         alert.setContentText(msg);
         alert.showAndWait();
     }

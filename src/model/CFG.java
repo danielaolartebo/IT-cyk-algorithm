@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Daniela Olarte Borja A00368359
@@ -14,13 +16,14 @@ public class CFG {
     private Grammar gm;
     private String grammarM;
     private boolean chomskey = true;
-    private char[] symbols;
+    private ArrayList<Character> symbols;
     char[][] cykTable;
 
     //Constructor
 
     public CFG() {
         this.gm = new Grammar();
+        this.symbols = new ArrayList<>();
     }
 
     public Grammar getGrammar() {
@@ -33,7 +36,7 @@ public class CFG {
      * @return the symbols in a character array
      */
 
-    public char[] getSymbols() {
+    public ArrayList<Character> getSymbols() {
         return symbols;
     }
 
@@ -43,7 +46,7 @@ public class CFG {
      * @param symbols representing a new character array
      */
 
-    public void setSymbols(char[] symbols) {
+    public void setSymbols(ArrayList<Character> symbols) {
         this.symbols = symbols;
     }
 
@@ -177,10 +180,11 @@ public class CFG {
     public void validateTerminals(String[] production) {
         for (int i = 0; i < production.length; i++) {
             if (production[i].length() == 1) {
-                if (!((int) production[i].charAt(0) >= 97 & (int) production[i].charAt(0) <= 122) ||
-                        (int) production[i].charAt(0) == 42) {
+                if (!((int) production[i].charAt(0) >= 97 && (int) production[i].charAt(0) <= 122 || (int) production[i].charAt(0) == 42)) {
                     System.out.println("Terminal fuera de rango");
                     chomskey = false;
+                } else {
+                    symbols.add(production[i].charAt(0));
                 }
             }
         }
