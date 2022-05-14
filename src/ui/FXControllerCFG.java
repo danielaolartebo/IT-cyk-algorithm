@@ -1,5 +1,4 @@
 package ui;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +10,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.CFG;
-
 import java.io.IOException;
 
 /**
@@ -23,7 +21,11 @@ import java.io.IOException;
 
 public class FXControllerCFG {
 
+    //Atributes
+
     private CFG cfg;
+
+    //Constructor
 
     public FXControllerCFG() {
         cfg = new CFG();
@@ -42,10 +44,12 @@ public class FXControllerCFG {
     @FXML
     private Button btnNext;
 
-
-    //----------------------------------------------------------------------------------------------------------------
-
     //********************************************** GUI METHODS ***************************************************************+
+
+    /**
+     * Checks if the grammar is in FNC
+     * @param event
+     */
 
     @FXML
     public void onCreateGrammar(ActionEvent event) throws IOException {
@@ -64,10 +68,19 @@ public class FXControllerCFG {
         }
     }
 
+    /**
+     * Sends the grammar to be checked
+     */
+
     public void sendGrammar(){
         cfg.getGrammarM(txtGrammar.getText());
         cfg.splitGrammarT();
     }
+
+    /**
+     * Error alert
+     * @param msg given to the user
+     */
 
     public void alertError(String msg){
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -76,6 +89,10 @@ public class FXControllerCFG {
         alert.setContentText(msg);
         alert.showAndWait();
     }
+
+    /**
+     * Next screen button
+     */
 
     public void nextScreen() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/Testing.fxml"));

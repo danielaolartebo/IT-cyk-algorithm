@@ -17,7 +17,11 @@ import java.io.IOException;
 
 public class Main extends Application {
 
+    //Atributes
+
    FXControllerCFG fxGUI;
+
+   //Constructor
 
     public Main() throws IOException {
         fxGUI = new FXControllerCFG();

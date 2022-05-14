@@ -1,35 +1,74 @@
 package model;
 
+/**
+ *
+ * @author Daniela Olarte Borja A00368359
+ * @author Gabriel Suarez Baron A00368589
+ *
+ */
+
 public class CFG {
+
+    //Atributes
 
     private Grammar gm;
     private String grammarM;
     private boolean chomskey = true;
 
+    //Constructor
+
     public CFG() {
         this.gm = new Grammar();
     }
+
+    /**
+     * Gets the grammar input
+     * @return grammar
+     */
 
     public Grammar getGrammar() {
         return gm;
     }
 
+    /**
+     * Sets the grammar input
+     * @param grammar string
+     */
+
     public void getGrammarM(String grammar) {
         grammarM = grammar;
     }
+
+    /**
+     * Checks if it is an FNC
+     * @return if it is FNC as boolean
+     */
 
     public boolean getChomskey() {
         return chomskey;
     }
 
+    /**
+     * Resets grammar
+     */
+
     public void resetGrammar(){
         gm = new Grammar();
     }
+
+    /**
+     * Split the grammar with a line break
+     */
 
     public void splitGrammarT() {
         String[] splitGrammarT = grammarM.split("\n");
         splitSymbolInit(splitGrammarT);
     }
+
+    /**
+     * Splits the lines according the initial symbol
+     * @param splitGrammarT as a string array
+     */
 
     public void splitSymbolInit(String[] splitGrammarT) {
         Transition transition;
@@ -59,6 +98,12 @@ public class CFG {
         }
     }
 
+    /**
+     * Validates if there is not a repeated symbol in the transitions
+     * @param symbol string
+     * @return in a boolean is there is or not
+     */
+
     public boolean validateNotRepeat(String symbol){
         if(gm.getTransitions().isEmpty()){
             return true;
@@ -72,6 +117,11 @@ public class CFG {
         return true;
     }
 
+    /**
+     * Splits productions with a "|" in order to be checked
+     * @param array of productions saved
+     */
+
     public void splitProducctions(String[] productions) {
         int actualT = 0;
         for (int i = 0; i < productions.length; i++) {
@@ -84,11 +134,21 @@ public class CFG {
         }
     }
 
+    /**
+     * Deletes spaces in between production
+     * @param array of productions saved
+     */
+
     public void deleteSpace(String[] production){
         for (int i = 0; i < production.length; i++) {
             production[i] = production[i].replaceAll(" ", "");
         }
     }
+
+    /**
+     * Validates if there is just one terminal per production
+     * @param array of productions checked
+     */
 
     public void validateTerminals(String[] production){
         for (int i = 0; i < production.length; i++) {
@@ -101,6 +161,11 @@ public class CFG {
             }
         }
     }
+
+    /**
+     * Validates if there are two variables in a binary production
+     * @param array of productions checked
+     */
 
     public void validateBinary(String[] production){
         boolean out = true;
@@ -124,6 +189,12 @@ public class CFG {
         }
     }
 
+    /**
+     * Validates initial symbol is valid
+     * @param symbol string
+     * @return boolean if valid
+     */
+
     public boolean validateInInit(String symbol){
         boolean out = false;
         for (int i = 0; i < gm.getTransitions().size(); i++) {
@@ -135,6 +206,12 @@ public class CFG {
         return out;
     }
 
+    /**
+     * Adds transitions to production
+     * @param array of productions
+     * @param act to check
+     */
+
     public void addTransitions(int act, String[] production){
         if(chomskey){
             for (String s : production) {
@@ -142,6 +219,10 @@ public class CFG {
             }
         }
     }
+
+    /**
+     * Test size of production 
+     */
 
     public void test(){
         System.out.println(gm.getTransitions().size() + "Tamanio");
