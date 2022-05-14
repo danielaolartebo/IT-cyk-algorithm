@@ -51,7 +51,7 @@ C->BA|a
 bbab
 ```
 
-*According to the previous proving example, the string "bbab" should belong to the grammar*
+*According to the previous example, the string "bbab" should belong to the grammar*
 
 ## ***Sources***📎
 
