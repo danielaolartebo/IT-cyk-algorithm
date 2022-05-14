@@ -8,11 +8,11 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="705.0" prefWidth="564.0" style="-fx-background-color: #BD2000;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="bpMain" prefHeight="705.0" prefWidth="564.0" style="-fx-background-color: #BD2000;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="688.0" prefWidth="545.0" style="-fx-background-color: #ff7f3f;">
          <children>
-            <Button layoutX="228.0" layoutY="651.0" mnemonicParsing="false" onAction="#onCreateGrammar" prefHeight="25.0" prefWidth="90.0" text="Continue">
+            <Button fx:id="btnNext" layoutX="228.0" layoutY="651.0" mnemonicParsing="false" onAction="#onCreateGrammar" prefHeight="25.0" prefWidth="90.0" text="Continue">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

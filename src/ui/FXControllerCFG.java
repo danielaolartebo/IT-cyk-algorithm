@@ -2,8 +2,14 @@ package ui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import model.CFG;
 
 import java.io.IOException;
@@ -28,29 +34,58 @@ public class FXControllerCFG {
     // Create.fxml file attributes
 
     @FXML
+    private TextField stringTextField;
+
+    @FXML
     private TextArea txtGrammar;
+
+    @FXML
+    private Button btnNext;
+
 
     //----------------------------------------------------------------------------------------------------------------
 
     //********************************************** GUI METHODS ***************************************************************+
 
     @FXML
-    public void onCreateGrammar(ActionEvent event) {
-        sendGrammar();
-        if(!cfg.getChomskey()){
-            cfg.resetGrammar();
-            cfg = new CFG();
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setTitle("Error");
-            alert.setContentText("Error no ingresaste una gramatica en FNC");
-            alert.showAndWait();
+    public void onCreateGrammar(ActionEvent event) throws IOException {
+        if(!txtGrammar.getText().equals("")){
+            sendGrammar();
+            if(!cfg.getChomskey()){
+                cfg.resetGrammar();
+                alertError("No ingresaste una Gramatica FNC");
+                cfg = new CFG();
+            } else {
+                cfg.test();
+                nextScreen();
+            }
+        } else {
+            alertError("Gramatica vacía");
         }
-        cfg.test();
     }
 
     public void sendGrammar(){
         cfg.getGrammarM(txtGrammar.getText());
         cfg.splitGrammarT();
+    }
+
+    public void alertError(String msg){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText(null);
+        alert.setTitle("Error");
+        alert.setContentText(msg);
+        alert.showAndWait();
+    }
+
+    public void nextScreen() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/Testing.fxml"));
+        fxmlLoader.setController(this);
+        Parent root = fxmlLoader.load();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
+        Stage newstage = (Stage) this.btnNext.getScene().getWindow();
+        newstage.close();
     }
 }
