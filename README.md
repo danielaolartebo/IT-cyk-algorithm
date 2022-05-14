@@ -37,17 +37,21 @@
 
 ## ***Proving examples***📍
 **Creation screen**
-➖*Variable: SAB*
-➖*Symbols: ab*
-➖*Initial state: S*
-
-**Production screen**
-➖*Variable: S  ➡️  AB*
-➖*Variable: A  ➡️  AA|a*
-➖*Variable: B  ➡️  b*
+➖*FNC grammar:* 
+```bash
+S->BA|AC
+A->CC|b
+B->AB|a
+C->BA|a
+```
 
 **Testing screen**
-➖*String: aab*
+➖*String:*
+```bash
+bbab
+```
+
+*According to the previous proving example, the string "bbab" should belong to the grammar*
 
 ## ***Sources***📎
 
