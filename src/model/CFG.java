@@ -329,10 +329,12 @@ public class CFG {
                         if((int)temp.charAt(temp.length()-1) == 44){
                             temp = temp.substring(0, temp.length()-1);
                         }
+                        System.out.println("Posi " + i + " Posj " + j + " Val "+temp);
                     }
                     cykTable[i][j] = temp;
-                    temp = "";
+                    System.out.println(cykTable[i][j]);
                 }
+                temp = "";
             }
             temp = "";
         }
