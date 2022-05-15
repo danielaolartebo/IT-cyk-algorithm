@@ -58,8 +58,10 @@ public class FXControllerCFG {
         String string = stringTextField.getText();
         if (check(string)) {
             cfg.initCYKTable(string);
-            if (cfg.cykAlgorithm(string)) {
+            if (cfg.cykAlgorithm()) {
                 alert("La cadena pertenece a la gramatica", true);
+            } else {
+                alert("La cadena no pertenece a la gramatica", false);
             }
         }  else {
             alert("Formato incorrecto. Volver a introducir la cadena", false);
