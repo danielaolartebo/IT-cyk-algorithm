@@ -28,7 +28,9 @@
             </Label>
             <TextField fx:id="stringTextField" alignment="CENTER" layoutX="166.0" layoutY="101.0" prefHeight="25.0" prefWidth="203.0" promptText="Example: aabbcc" />
             <Label layoutX="248.0" layoutY="197.0" text="Status" />
-            <Label layoutX="263.0" layoutY="226.0" prefHeight="21.0" prefWidth="0.0" text="..." />
+            <Label fx:id="txtStatus" layoutX="263.0" layoutY="226.0" prefHeight="21.0" prefWidth="0.0" text="..." />
+            <Label layoutX="248.0" layoutY="256.0" text="Matriz" />
+            <Label fx:id="txtMatrix" layoutX="263.0" layoutY="287.0" text="..." />
          </children>
       </AnchorPane>
    </center>

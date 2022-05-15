@@ -331,7 +331,7 @@ public class CFG {
                         }
                         System.out.println("Posi " + i + " Posj " + j + " Val "+temp);
                     }
-                    cykTable[i][j] = temp;
+                    cykTable[i][j] =  fixString(temp);
                     System.out.println(cykTable[i][j]);
                 }
                 temp = "";
@@ -395,5 +395,28 @@ public class CFG {
         } else {
             return "";
         }
+    }
+
+    public String fixString(String s){
+        if(s != null){
+            String msg = "";
+            String[] st = s.split(",");
+            String sep = "";
+
+            for (int i = 0; i < st.length; i++) {
+                if(st[i].length()>1){
+                    st[i] = st[i].replaceAll("", ",");
+                    st[i] = st[i].replaceFirst(",", "");
+                    st[i] = st[i].substring(0, st[i].length()-1);
+                }
+                String[] sti = st[i].split(",");
+                for (int j = 0; j < sti.length; j++) {
+                    msg += sep+sti[j];
+                    sep = ",";
+                }
+            }
+            return msg;
+        }
+        return null;
     }
 }

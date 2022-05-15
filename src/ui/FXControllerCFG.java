@@ -60,6 +60,7 @@ public class FXControllerCFG {
             cfg.initCYKTable(string);
             if (cfg.cykAlgorithm()) {
                 alert("La cadena pertenece a la gramatica", true);
+
             } else {
                 alert("La cadena no pertenece a la gramatica", false);
             }
