@@ -17,7 +17,7 @@ public class CFG {
     private Grammar gm;
     private String grammarM;
     private boolean chomskey = true;
-    private ArrayList<Character> symbols;
+    private final ArrayList<Character> symbols;
     String[][] cykTable;
 
     //Constructor
@@ -38,15 +38,6 @@ public class CFG {
 
     public ArrayList<Character> getSymbols() {
         return symbols;
-    }
-
-    /**
-     * Changes the symbols array by a new char array
-     * @param symbols representing a new character array
-     */
-
-    public void setSymbols(ArrayList<Character> symbols) {
-        this.symbols = symbols;
     }
 
     /**
@@ -102,12 +93,10 @@ public class CFG {
                     productions[i] = init[1];
                     gm.getTransitions().add(transition);
                 } else {
-                    System.out.println("NO esta en el rango o valor repetido");
                     chomskey = false;
                     out = false;
                 }
             } else {
-                System.out.println("Simbolo incial longitud 2");
                 out = false;
                 chomskey = false;
             }
@@ -143,8 +132,8 @@ public class CFG {
 
     public void splitProducctions(String[] productions) {
         int actualT = 0;
-        for (int i = 0; i < productions.length; i++) {
-            String[] production = productions[i].split("\\|");
+        for (String s : productions) {
+            String[] production = s.split("\\|");
             deleteSpace(production);
             validateTerminals(production);
             validateBinary(production);
@@ -170,13 +159,12 @@ public class CFG {
      */
 
     public void validateTerminals(String[] production) {
-        for (int i = 0; i < production.length; i++) {
-            if (production[i].length() == 1) {
-                if (!((int) production[i].charAt(0) >= 97 && (int) production[i].charAt(0) <= 122 || (int) production[i].charAt(0) == 42)) {
-                    System.out.println("Terminal fuera de rango");
+        for (String s : production) {
+            if (s.length() == 1) {
+                if (!((int) s.charAt(0) >= 97 && (int) s.charAt(0) <= 122 || (int) s.charAt(0) == 42)) {
                     chomskey = false;
                 } else {
-                    symbols.add(production[i].charAt(0));
+                    symbols.add(s.charAt(0));
                 }
             }
         }
@@ -191,17 +179,14 @@ public class CFG {
         boolean out = true;
         for (int i = 0; i < production.length && out; i++) {
             if (production[i].length() > 2) {
-                System.out.println("Produccion no binaria");
                 chomskey = false;
                 out = false;
             } else if (production[i].length() == 2) {
                 if (!validateInInit(production[i].charAt(0) + "")) {
-                    System.out.println("Primer elemento no encontrado en simbolos");
                     chomskey = false;
                     out = false;
                 }
                 if (!validateInInit(production[i].charAt(1) + "")) {
-                    System.out.println("Segundo elemento no encontrado en simbolos");
                     chomskey = false;
                     out = false;
                 }
@@ -240,33 +225,9 @@ public class CFG {
         }
     }
 
-    /**
-     * Test size of production
-     */
-
-    public void test() {
-        System.out.println(gm.getTransitions().size() + "Tamanio");
-        for (int i = 0; i < gm.getTransitions().size(); i++) {
-            System.out.println(gm.getTransitions().get(i).getInitSymbol());
-            for (int j = 0; j < gm.getTransitions().get(i).getProductions().size(); j++) {
-                System.out.println("Hace parte del anterior " + gm.getTransitions().get(i).getProductions().get(j));
-            }
-        }
-    }
-
-
-    /**
-     * Gets the CYK Table
-     * @return CYK Table
-     */
-
-    public String[][] getCykTable() {
-        return cykTable;
-    }
 
     /**
      * Gets the initial symbol for the CYK
-     * @return w to save symbol
      */
 
     public void initCYKTable(String w){
@@ -311,11 +272,7 @@ public class CFG {
             for (int i = 0; i < (n-j); i++) {
                 for (int k = 0; k < j; k++) {
                     String string = cykTable[i][k] + cykTable[i+k+1][j-k-1];
-                    System.out.println(cykTable[i][k] + " viendo? 1");
-                    System.out.println(cykTable[i+k+1][j-k-1] + " viendo? 2");
                     if(string.length() > 2) {
-                        System.out.println(cykTable[i][k] + " entro? 1");
-                        System.out.println(cykTable[i+k+1][j-k-1] + " entro? 2");
                         string = splitCadena(cykTable[i][k], cykTable[i+k+1][j-k-1]);
                     }
                     temp += searchProduction(string);
@@ -323,22 +280,13 @@ public class CFG {
                         if((int)temp.charAt(temp.length()-1) == 44){
                             temp = temp.substring(0, temp.length()-1);
                         }
-                        System.out.println("Posicion i " + i + " Posicion j " + j + " Valor "+temp);
                     }
                     cykTable[i][j] =  fixString(temp);
-                    System.out.println(cykTable[i][j]);
                 }
                 temp = "";
             }
             temp = "";
         }
-        for (String[] strings : cykTable) {
-            for (String string : strings) {
-                System.out.print("["+string+"]" + " ");
-            }
-            System.out.println();
-        }
-        System.out.println(cykTable[0][cykTable.length - 1]);
         return !Objects.equals(cykTable[0][cykTable.length - 1], "");
     }
 
@@ -359,19 +307,15 @@ public class CFG {
                 }
             } else {
                 String[] productions = production.split(" ");
-                for (int i = 0; i < productions.length; i++) {
-                    System.out.println(productions[i] + " Valor a buscar " + productions[i].length());
+                for (String s : productions) {
                     for (int j = 0; j < gm.getTransitions().size(); j++) {
-                        if(gm.getTransitions().get(j).getProductions().contains(productions[i])){
-                            System.out.println(productions[i] + "Encontrado");
-                            System.out.println(gm.getTransitions().get(j).getInitSymbol() + "Cual es?");
-                            msg += gm.getTransitions().get(j).getInitSymbol()+",";
+                        if (gm.getTransitions().get(j).getProductions().contains(s)) {
+                            msg += gm.getTransitions().get(j).getInitSymbol() + ",";
                         }
                     }
                 }
             }
         }
-        System.out.println(msg + " Por que putas?");
         if(!msg.equals("")) {
             return msg;
         } else {
@@ -387,16 +331,14 @@ public class CFG {
 
     public String splitCadena(String w1, String w2){
         if(w1 != null && w2 != null){
-            System.out.println(w1 + "Evaluando " + w2);
             String[] firstV = w1.split(",");
             String[] secondV = w2.split(",");
             String msg = "";
-            for (int i = 0; i < firstV.length; i++) {
-                for (int j = 0; j < secondV.length; j++) {
-                    msg += firstV[i]+secondV[j] + " ";
+            for (String s : firstV) {
+                for (String value : secondV) {
+                    msg += s + value + " ";
                 }
             }
-            System.out.println(msg + "Vaya");
             return msg;
         } else {
             return "";

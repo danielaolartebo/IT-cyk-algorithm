@@ -88,7 +88,6 @@ public class FXControllerCFG {
      */
     private boolean check(String string) {
         String symbols = Arrays.toString(cfg.getSymbols().toArray());
-        System.out.println(symbols);
         return string.matches("[" + symbols + "]+") && !string.isEmpty();
     }
 
@@ -106,7 +105,6 @@ public class FXControllerCFG {
                 alert("No ingresaste una Gramatica FNC", false);
                 cfg = new CFG();
             } else {
-                cfg.test();
                 nextScreen();
             }
         } else {
