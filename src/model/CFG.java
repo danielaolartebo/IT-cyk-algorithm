@@ -410,13 +410,24 @@ public class CFG {
                     st[i] = st[i].substring(0, st[i].length()-1);
                 }
                 String[] sti = st[i].split(",");
-                for (int j = 0; j < sti.length; j++) {
-                    msg += sep+sti[j];
+                for (String value : sti) {
+                    msg += sep + value;
                     sep = ",";
                 }
             }
             return msg;
         }
         return null;
+    }
+
+    public String showMatrix(){
+        String msg = "";
+        for (String[] strings : cykTable) {
+            for (String string : strings) {
+                msg += "["+string+"]" + " ";
+            }
+            msg += "\n";
+        }
+        return msg;
     }
 }
