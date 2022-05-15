@@ -1,9 +1,6 @@
 package model;
 
-import com.sun.deploy.util.StringUtils;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Objects;
 
 /**
@@ -311,7 +308,7 @@ public class CFG {
         String temp = "";
         int n = cykTable.length;
         for (int i = 0; i < n; i++) {
-            cykTable[i][0] = StringUtils.join(searchStringInit(cykTable[i][0]+""), ",");
+            cykTable[i][0] = String.join(",", searchStringInit(cykTable[i][0]+""));
         }
         for (int j = 1; j < n; j++) {
             for (int i = 0; i < (n-j); i++) {
