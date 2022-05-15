@@ -57,9 +57,9 @@ public class FXControllerCFG {
     private void testIfStringBelongsToGrammar(ActionEvent event) {
         String string = stringTextField.getText();
         if (check(string)) {
+            cfg.initCYKTable(string);
             if (cfg.cykAlgorithm(string)) {
                 alert("La cadena pertenece a la gramatica", true);
-                System.out.println("Xd");
             }
         }  else {
             alert("Formato incorrecto. Volver a introducir la cadena", false);
