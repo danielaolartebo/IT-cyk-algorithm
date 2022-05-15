@@ -1,4 +1,5 @@
 package ui;
+import com.jfoenix.controls.JFXTextArea;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -40,6 +41,13 @@ public class FXControllerCFG {
     @FXML
     private Button btnNext;
 
+    @FXML
+    private TextArea txtMatrix;
+
+    @FXML
+    private Label txtStat;
+
+
     // Testing.fxml file attributes
 
     @FXML
@@ -59,9 +67,15 @@ public class FXControllerCFG {
         if (check(string)) {
             cfg.initCYKTable(string);
             if (cfg.cykAlgorithm()) {
+                txtStat.setText("Aceptada");
                 alert("La cadena pertenece a la gramatica", true);
+                txtMatrix.appendText(cfg.showMatrix());
+                //txtStatus.setText("Cadena aceptada");
+                //txtMatrix.setText(cfg.showMatrix());
+
 
             } else {
+                txtStat.setText("Rechazada");
                 alert("La cadena no pertenece a la gramatica", false);
             }
         }  else {
